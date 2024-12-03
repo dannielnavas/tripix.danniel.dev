@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className={nunito.className}>
+      <body className={`bg-gray-900 ${nunito.className}`}>
         <Header />
         {children}
         <Footer />
