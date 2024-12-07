@@ -1,4 +1,21 @@
-const Hero = () => {
+"use client";
+import { signIn, signOut, useSession } from "next-auth/react";
+import React from "react";
+
+const Hero: React.FC = () => {
+  const { data: session } = useSession();
+
+  if (session && session.user) {
+    console.log(session);
+    return (
+      <div className="flex gap-4 ml-auto">
+        <p className="text-sky-600">{session.user.name}</p>
+        <button onClick={() => signOut()} className="text-red-600">
+          Sign Out
+        </button>
+      </div>
+    );
+  }
   return (
     <section className="bg-gray-900 text-white">
       <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
@@ -14,19 +31,12 @@ const Hero = () => {
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a
+            <button
               className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-              href="#"
+              onClick={() => signIn()}
             >
               Get Started
-            </a>
-
-            <a
-              className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-              href="#"
-            >
-              Learn More
-            </a>
+            </button>
           </div>
         </div>
       </div>
