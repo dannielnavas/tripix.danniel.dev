@@ -1,3 +1,4 @@
+import Providers from "@/Components/Hero/Providers";
 import { Footer } from "@/Components/shared/Footer/Footer";
 import { Header } from "@/Components/shared/Header/Header";
 import type { Metadata } from "next";
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={`bg-gray-900 ${nunito.className}`}>
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
